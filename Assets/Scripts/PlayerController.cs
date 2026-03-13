@@ -56,6 +56,7 @@ public class PlayerController : NetworkBehaviour
 
     void OnFastfall(InputValue value)
     {
+        return;
         if (!IsOwner) return;
         isFastFalling = value.isPressed;
     }

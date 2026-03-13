@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/NGO_Minimal_Setup/NGO_Setup.unity
     guid: d0cecee6f40ba314e9797b502dfebe99
+  - enabled: 1
+    path: Assets/Scenes/Tom.unity
+    guid: 4e6cb3e6f7a4b8b45bf3d1763e92f562
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

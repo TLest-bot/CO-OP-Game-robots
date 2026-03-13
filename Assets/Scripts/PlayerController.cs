@@ -64,7 +64,13 @@ public class PlayerController : NetworkBehaviour
     {
         if (!IsOwner) return;
         HandleContinuousFootsteps();
-        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        Vector2 moveDirection = new Vector2(moveInput.x, 0);
+
+        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed)
+        {
+            float accelerationForce = 50f;
+            rb.AddForce(moveDirection * accelerationForce);
+        }
     }
 
 

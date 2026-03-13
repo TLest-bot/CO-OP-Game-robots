@@ -4,7 +4,7 @@ using Unity.Netcode;
 
 public class PlayerController : NetworkBehaviour
 {
-    [Header("Settings")]
+    [Header("Movement Settings")]
     public float moveSpeed = 8f;
     public float jumpForce = 12f;
     public float fastFallGravity = 4f;
@@ -14,13 +14,31 @@ public class PlayerController : NetworkBehaviour
     private bool isFastFalling;
     private float defaultGravity;
 
+    [Header("Continuous Footstep Settings")]
+    public AudioSource footstepSource;
+    public float fadeSpeed = 5f;
+    public float maxVolume = 0.5f;
+
+    void Start()
+    {
+        if (footstepSource == null) footstepSource = GetComponent<AudioSource>();
+
+
+        if (Camera.main != null)
+        {
+            footstepSource.rolloffMode = AudioRolloffMode.Linear;
+            footstepSource.minDistance = 1f;
+            footstepSource.maxDistance = 20f;
+        }
+    }
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         defaultGravity = rb.gravityScale;
+
     }
 
-    // This now matches the "Vector 2" type in your screenshot
     void OnMove(InputValue value)
     {
         if (!IsOwner) return;
@@ -36,7 +54,7 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-    void OnFastfall(InputValue value) // Note the lowercase 'f' to match your screenshot
+    void OnFastfall(InputValue value)
     {
         if (!IsOwner) return;
         isFastFalling = value.isPressed;
@@ -45,7 +63,7 @@ public class PlayerController : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) return;
-
+        HandleContinuousFootsteps();
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
     }
 
@@ -54,7 +72,6 @@ public class PlayerController : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        // Use moveInput.x for horizontal movement
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
 
         if (isFastFalling && rb.linearVelocity.y < 0)
@@ -70,7 +87,6 @@ public class PlayerController : NetworkBehaviour
     {
         base.OnNetworkSpawn();
 
-        // Check if this specific spawned prefab belongs to the local player
         if (IsOwner)
         {
             if (CameraFollow.Instance != null)
@@ -84,4 +100,22 @@ public class PlayerController : NetworkBehaviour
             }
         }
     }
+
+    void HandleContinuousFootsteps()
+    {
+        bool isMoving = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
+        bool isGrounded = Mathf.Abs(rb.linearVelocity.y) < 0.01f;
+
+        if (isMoving && isGrounded)
+        {
+            if (!footstepSource.isPlaying) footstepSource.Play();
+            footstepSource.volume = Mathf.MoveTowards(footstepSource.volume, maxVolume, fadeSpeed * Time.deltaTime);
+        }
+        else
+        {
+            footstepSource.volume = Mathf.MoveTowards(footstepSource.volume, 0f, fadeSpeed * Time.deltaTime);
+            if (footstepSource.volume <= 0f && footstepSource.isPlaying) footstepSource.Stop();
+        }
+    }
+
 }

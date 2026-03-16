@@ -62,7 +62,6 @@ public class SequenceManager : MonoBehaviour
         button.SetPressState(false);
     }
 
-    // --- REPLAY MECHANIC ---
     public void PlayTargetSequenceSounds()
     {
         if (!isPlayingSequence) StartCoroutine(SequencePlaybackRoutine());
@@ -118,7 +117,7 @@ public class SequenceManager : MonoBehaviour
         foreach (WorldButton button in worldButtons)
         {
             button.SetColor(pressedColor);
-            button.isPressed = true;
+            button.SetPressState(true);
         }
 
         Failsound.Play();
@@ -128,7 +127,7 @@ public class SequenceManager : MonoBehaviour
         foreach (WorldButton button in worldButtons)
         {
             button.SetColor(normalColor);
-            button.isPressed = false;
+            button.SetPressState(false);
         }
     }
 

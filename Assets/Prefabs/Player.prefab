@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1169602735847948466}
   - component: {fileID: 5658938723537863337}
   - component: {fileID: 2103307562622193382}
+  - component: {fileID: -3090482404642094405}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -114,7 +115,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1.3
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -402,8 +403,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Magnetic
   magneticColliders: []
-  polarity: -1
+  polarity: 1
   isStatic: 0
   strength: 5
   range: 8
   rb: {fileID: 7528931066305319513}
+--- !u!114 &-3090482404642094405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2424541399411554595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a69178e7a702244adf4d1573c2f9e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerReversePolarity
+  strength: 40
+  duration: 0.2
+  cooldown: 1.5
+  reverse: 1

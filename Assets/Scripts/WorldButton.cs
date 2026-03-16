@@ -9,7 +9,7 @@ public class WorldButton : MonoBehaviour
     public int myID;
     public bool isReplayButton = false;
 
-    public bool isPressed = false;
+    private bool isPressed = false;
     private SpriteRenderer myRenderer;
     private AudioSource myAudio;
 

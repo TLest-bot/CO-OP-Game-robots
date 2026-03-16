@@ -19,6 +19,10 @@ public class SequenceManager : MonoBehaviour
     private List<int> currentInput = new List<int>();
     private bool isPlayingSequence = false;
 
+    [Header("Succes/Fail")]
+    public AudioSource VictorySound;
+    public AudioSource Failsound;
+
     void Start()
     {
         // 1. Check of de lijst gevuld is VOORDAT we genereren
@@ -78,7 +82,7 @@ public class SequenceManager : MonoBehaviour
             {
                 targetBtn.PlaySound();
                 targetBtn.SetColor(pressedColor);
-                yield return new WaitForSeconds(0.6f);
+                yield return new WaitForSeconds(1.2f);
                 targetBtn.SetColor(normalColor);
             }
             yield return new WaitForSeconds(0.2f);
@@ -90,11 +94,8 @@ public class SequenceManager : MonoBehaviour
     public void ReceiveInput(int number)
     {
         currentInput.Add(number);
-
-        // Debug log om te zien wat er gebeurt
         Debug.Log("Huidige input: " + string.Join(", ", currentInput));
 
-        // Als de input even lang is als de target, gaan we checken
         if (currentInput.Count == targetSequence.Count)
         {
             if (currentInput.SequenceEqual(targetSequence))
@@ -104,15 +105,36 @@ public class SequenceManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("<color=red>CODE FOUT!</color> Probeer opnieuw.");
-                currentInput.Clear(); // Reset bij fout, zodat de speler opnieuw moet beginnen
+                StartCoroutine(HandleWrongInput());
             }
+        }
+    }
+
+    private IEnumerator HandleWrongInput()
+    {
+        Debug.Log("<color=red>CODE FOUT!</color> Probeer opnieuw.");
+        currentInput.Clear();
+
+        foreach (WorldButton button in worldButtons)
+        {
+            button.SetColor(pressedColor);
+            button.isPressed = true;
+        }
+
+        Failsound.Play();
+
+        yield return new WaitForSeconds(2f);
+
+        foreach (WorldButton button in worldButtons)
+        {
+            button.SetColor(normalColor);
+            button.isPressed = false;
         }
     }
 
     void HandleSuccess()
     {
-        // Hier kun je een deur openen of een geluid afspelen
+        VictorySound.Play();
         GenerateNewSequence();
     }
 
@@ -121,10 +143,9 @@ public class SequenceManager : MonoBehaviour
         targetSequence.Clear();
         currentInput.Clear();
 
-        // Genereer nummers gebaseerd op de beschikbare ID's (1 tot aantal buttons)
         for (int i = 0; i < sequenceLength; i++)
         {
-            int randomID = Random.Range(1, worldButtons.Count + 1);
+            int randomID = Random.Range(1, worldButtons.Count - 1);
             targetSequence.Add(randomID);
         }
 
@@ -134,7 +155,6 @@ public class SequenceManager : MonoBehaviour
     public IEnumerator HandleReplayButtonFlash(WorldButton button)
     {
         button.SetPressState(true);
-        button.PlaySound();
         button.SetColor(pressedColor);
         yield return new WaitForSeconds(0.5f);
         button.SetColor(normalColor);

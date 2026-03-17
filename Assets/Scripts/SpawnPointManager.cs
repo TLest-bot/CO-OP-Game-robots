@@ -24,7 +24,6 @@ public class SpawnPointManager : MonoBehaviour
 
     public Spawnpoint GetSpawnpointByLevel(int targetLevel)
     {
-        // Zoek het eerste spawnpoint dat matcht met het targetLevel
         Spawnpoint foundPoint = Spawnpoints.FirstOrDefault(s => s.level == targetLevel);
 
         if (foundPoint != null)
@@ -46,7 +45,6 @@ public class SpawnPointManager : MonoBehaviour
         {
             return true;
         }
-        return false;
     }
     public void Teleport(GameObject player,  Spawnpoint spawnpoint)
     {

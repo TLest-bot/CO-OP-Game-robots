@@ -19,7 +19,7 @@ public class Magnetic : MonoBehaviour
         GameObject.Find("Magnets Manager").GetComponent<MagnetsManager>().UpdateMagnetColliderList();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         foreach(BoxCollider2D col in magneticColliders)
         {

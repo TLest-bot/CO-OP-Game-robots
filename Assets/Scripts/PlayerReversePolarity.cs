@@ -18,6 +18,7 @@ public class PlayerReversePolarity : MonoBehaviour
     {
         if (gameObject.GetComponent<Magnetic>() != null)
         {
+            strength = 40;
             magnet = gameObject.GetComponent<Magnetic>();
             normalPolarisation = magnet.polarity;
             normalStrength = magnet.strength;

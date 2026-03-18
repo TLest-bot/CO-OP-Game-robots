@@ -1,4 +1,3 @@
-using Assets.Scripts.Objects;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +11,7 @@ public class SpawnPointManager : MonoBehaviour
     public GameObject objects;
     void Start()
     {
-        Spawnpoint spawn = new();
-        spawn.unlocked = false;
-        spawn.location = objects.transform.position;
+
     }
 
     void Update()
@@ -48,7 +45,7 @@ public class SpawnPointManager : MonoBehaviour
     }
     public void Teleport(GameObject player,  Spawnpoint spawnpoint)
     {
-        player.transform.position = spawnpoint.location;
+        player.transform.position = spawnpoint.transform.position;
     }
 
     void ZeroButton(InputAction.CallbackContext context)

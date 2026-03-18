@@ -1,6 +1,7 @@
+using System.Linq;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.Netcode;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerController : NetworkBehaviour
     private Vector2 moveInput;
     private bool isFastFalling;
     private float defaultGravity;
+    private PlayerTeleportHandler teleportHandler;
 
     [Header("Continuous Footstep Settings")]
     public AudioSource footstepSource;
@@ -22,7 +24,7 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         if (footstepSource == null) footstepSource = GetComponent<AudioSource>();
-
+        teleportHandler = GetComponent<PlayerTeleportHandler>();
 
         if (Camera.main != null)
         {
@@ -123,6 +125,36 @@ public class PlayerController : NetworkBehaviour
             footstepSource.volume = Mathf.MoveTowards(footstepSource.volume, 0f, fadeSpeed * Time.deltaTime);
             if (footstepSource.volume <= 0f && footstepSource.isPlaying) footstepSource.Stop();
         }
+    }
+
+    public void DieAndRespawn()
+    {
+        SpawnPointManager spawnManager = Object.FindAnyObjectByType<SpawnPointManager>();
+
+        if (spawnManager != null)
+        {
+            Spawnpoint bestPoint = spawnManager.Spawnpoints
+                .Where(s => s.unlocked)
+                .OrderByDescending(s => s.level)
+                .FirstOrDefault();
+
+            if (bestPoint != null)
+            {
+                teleportHandler.PerformTeleport(bestPoint);
+                return;
+            }
+        }
+        transform.position = Vector3.zero;
+    }
+
+    private void TeleportToPosition(Vector3 targetPosition)
+    {
+        CharacterController cc = GetComponent<CharacterController>();
+        if (cc != null) cc.enabled = false;
+
+        transform.position = targetPosition;
+
+        if (cc != null) cc.enabled = true;
     }
 
 }

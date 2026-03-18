@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Objects
+public class Spawnpoint : MonoBehaviour
 {
-    public class Spawnpoint
+    public int level;
+    public bool unlocked;
+
+    private void OnDrawGizmos()
     {
-        public int level;
-        public bool unlocked;
-        public Vector2 location;
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, 0.5f);
+        Gizmos.DrawRay(transform.position, transform.forward * 1f);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        unlocked = true;
     }
 }

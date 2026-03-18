@@ -6,12 +6,11 @@ public class DeathZone : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            RespawnPlayer(collision.gameObject);
+            PlayerController pc = collision.GetComponent<PlayerController>();
+            if (pc != null)
+            {
+                pc.DieAndRespawn();
+            }
         }
-    }
-
-    void RespawnPlayer(GameObject player)
-    {
-        player.transform.position = new Vector3(0, 0, 0);
     }
 }

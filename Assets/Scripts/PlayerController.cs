@@ -111,15 +111,22 @@ public class PlayerController : NetworkBehaviour
         Vector2 magnetismDirection = GetComponent<Magnetic>().totalDirection;
         Vector2 totalSpeed = movementDirection + magnetismDirection + gravityscale;
         currentSpeed = totalSpeed;
+
         if (IsDeaccelerating(totalSpeed))
         {
-            float n = 0;
-            if(lastSpeed.x > 0) { 
-                n = lastSpeed.x - deaccelrationSpeedX; }
-            if(lastSpeed.x < 0) { 
-                n = lastSpeed.x + deaccelrationSpeedX; }
-            float x = currentSpeed.x - n;
-            currentSpeed = new Vector2(x,0) + totalSpeed;
+
+            if (lastSpeed.x > 0)
+            {
+                lastSpeed.x -= deaccelrationSpeedX;
+            }
+
+            if (lastSpeed.x < 0)
+            {
+                lastSpeed.x += deaccelrationSpeedX;
+            }
+            rb.linearVelocity = lastSpeed;
+            lastSpeed = currentSpeed;
+            return;
         }
 
         rb.linearVelocity = currentSpeed;
@@ -128,7 +135,8 @@ public class PlayerController : NetworkBehaviour
     
     public bool IsDeaccelerating(Vector2 speed)
     {
-        if(Mathf.Abs(lastSpeed.x) > Mathf.Abs(speed.x) && Mathf.Abs(lastSpeed.x) > Mathf.Abs(moveSpeed))
+        Debug.Log((Mathf.Abs(lastSpeed.x) > Mathf.Abs(speed.x)) + " + " + (Mathf.Abs(lastSpeed.x) > Mathf.Abs(moveSpeed)));
+        if (Mathf.Abs(lastSpeed.x) > Mathf.Abs(speed.x) && Mathf.Abs(lastSpeed.x) > Mathf.Abs(moveSpeed))
         {
             if((lastSpeed.x > 0 && speed.x > 0) || (lastSpeed.x < 0 && speed.x < 0))
             return true;

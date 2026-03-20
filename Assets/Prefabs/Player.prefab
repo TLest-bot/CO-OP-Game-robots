@@ -117,7 +117,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 1
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -217,8 +217,9 @@ MonoBehaviour:
   jumpForce: 8
   fastFallGravity: 4
   deaccelrationSpeedX: 0.1
-  deaccelrationSpeedY: 4.5
+  deaccelrationSpeedY: 0.1
   maxYSpeed: 10
+  gravityscale: {x: 0, y: -1}
   footstepSource: {fileID: 5658938723537863337}
   fadeSpeed: 5
   maxVolume: 0.5

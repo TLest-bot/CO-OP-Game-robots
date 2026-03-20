@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class PlayerController : NetworkBehaviour
     public float deaccelrationSpeedX = 0.1f;
     public float deaccelrationSpeedY = 0.1f;
     public float maxYSpeed = 0.1f;
+    public Vector2 gravityscale;
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -28,6 +30,9 @@ public class PlayerController : NetworkBehaviour
     [Header("Animations")]
     public Animator animator;
 
+    private Vector2 currentSpeed;
+    private Vector2 lastSpeed;
+
     void Start()
     {
         if (footstepSource == null) footstepSource = GetComponent<AudioSource>();
@@ -41,6 +46,7 @@ public class PlayerController : NetworkBehaviour
         }
 
         lastMoveInput = new Vector2(0, 0);
+        lastSpeed = currentSpeed;
     }
 
     void Awake()
@@ -99,27 +105,32 @@ public class PlayerController : NetworkBehaviour
     {
         Vector2 movementDirection = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
         Vector2 magnetismDirection = GetComponent<Magnetic>().totalDirection;
-        /*if((magnetismDirection.x > 0 && movementDirection.x > 0) || (magnetismDirection.x < 0 && movementDirection.x < 0))
+        Vector2 totalSpeed = movementDirection + magnetismDirection + gravityscale;
+        currentSpeed = totalSpeed;
+        if (IsDeaccelerating(totalSpeed))
         {
-            movementDirection = movementDirection / 2;
-        }*/
-        Vector2 totalSpeed = movementDirection + magnetismDirection;
-
-        if (rb.linearVelocity.x < moveSpeed*-1)
-        {
-            totalSpeed = totalSpeed + new Vector2(rb.linearVelocity.x + deaccelrationSpeedX, 0);
-
-        }
-        else if (rb.linearVelocity.x > moveSpeed)
-        {
-            totalSpeed = totalSpeed + new Vector2(rb.linearVelocity.x - deaccelrationSpeedX, 0);
+            float n = 0;
+            if(lastSpeed.x > 0) { 
+                n = lastSpeed.x - deaccelrationSpeedX; }
+            if(lastSpeed.x < 0) { 
+                n = lastSpeed.x + deaccelrationSpeedX; }
+            float x = currentSpeed.x - n;
+            currentSpeed = new Vector2(x,0) + totalSpeed;
         }
 
-
-        rb.linearVelocity = totalSpeed;
-        
+        rb.linearVelocity = currentSpeed;
+        lastSpeed = currentSpeed;
     }
-
+    
+    public bool IsDeaccelerating(Vector2 speed)
+    {
+        if(Mathf.Abs(lastSpeed.x) > Mathf.Abs(speed.x) && Mathf.Abs(lastSpeed.x) > Mathf.Abs(moveSpeed))
+        {
+            if((lastSpeed.x > 0 && speed.x > 0) || (lastSpeed.x < 0 && speed.x < 0))
+            return true;
+        }
+        return false;
+    }
     /*  public void CalculateSpeed()
       {
           if (lastMoveInput != moveInput)
@@ -184,7 +195,7 @@ public class PlayerController : NetworkBehaviour
 
     public void DieAndRespawn()
     {
-        SpawnPointManager spawnManager = Object.FindAnyObjectByType<SpawnPointManager>();
+        SpawnPointManager spawnManager = UnityEngine.Object.FindAnyObjectByType<SpawnPointManager>();
 
         if (spawnManager != null)
         {

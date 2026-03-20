@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class PlayerController : NetworkBehaviour
     private bool isFastFalling;
     private float defaultGravity;
     private PlayerTeleportHandler teleportHandler;
+    public bool IsInputBlocked { get; private set; } = false;
 
     [Header("Continuous Footstep Settings")]
     public AudioSource footstepSource;
@@ -32,6 +34,8 @@ public class PlayerController : NetworkBehaviour
 
     private Vector2 currentSpeed;
     private Vector2 lastSpeed;
+
+    [SerializeField] private GameObject deathUI;
 
     void Start()
     {
@@ -58,13 +62,13 @@ public class PlayerController : NetworkBehaviour
 
     void OnMove(InputValue value)
     {
-        if (!IsOwner) return;
+        if (!IsOwner || IsInputBlocked) return;
         moveInput = value.Get<Vector2>();
     }
 
     void OnJump(InputValue value)
     {
-        if (!IsOwner) return;
+        if (!IsOwner || IsInputBlocked) return;
         if (value.isPressed && Mathf.Abs(rb.linearVelocity.y) < 0.1f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -74,7 +78,7 @@ public class PlayerController : NetworkBehaviour
     void OnFastfall(InputValue value)
     {
         return;
-        if (!IsOwner) return;
+        if (!IsOwner || IsInputBlocked) return;
         isFastFalling = value.isPressed;
     }
 
@@ -82,7 +86,7 @@ public class PlayerController : NetworkBehaviour
 
     void FixedUpdate()
     {
-        if (!IsOwner) return;
+        if (!IsOwner || IsInputBlocked) return;
         HandleContinuousFootsteps();
         HandlePlayerAirAnimations();
 
@@ -195,22 +199,62 @@ public class PlayerController : NetworkBehaviour
 
     public void DieAndRespawn()
     {
-        SpawnPointManager spawnManager = UnityEngine.Object.FindAnyObjectByType<SpawnPointManager>();
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        StartCoroutine(DeathSequenceRoutine());
+    }
 
+    private IEnumerator DeathSequenceRoutine()
+    {
+        IsInputBlocked = true;
+        GameObject spawnedUI = null;
+
+        // 1. Find and Load the prefab from the 'Resources' folder
+        // The name "DeathUI" must match your prefab's filename exactly
+        GameObject deathUIPrefab = Resources.Load<GameObject>("DeathUI");
+
+        if (deathUIPrefab != null)
+        {
+            spawnedUI = Instantiate(deathUIPrefab);
+        }
+        else
+        {
+            Debug.LogError("Could not find 'DeathUI' prefab in the Resources folder!");
+        }
+
+        // 2. Kill momentum
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+
+        // 3. The 2-second wait
+        yield return new WaitForSeconds(2f);
+
+        // 4. Remove the UI
+        if (spawnedUI != null)
+        {
+            Destroy(spawnedUI);
+        }
+
+        // 5. Teleport Logic
+        SpawnPointManager spawnManager = UnityEngine.Object.FindAnyObjectByType<SpawnPointManager>();
         if (spawnManager != null)
         {
-            Spawnpoint bestPoint = spawnManager.Spawnpoints
+            var bestPoint = spawnManager.Spawnpoints
                 .Where(s => s.unlocked)
                 .OrderByDescending(s => s.level)
                 .FirstOrDefault();
 
-            if (bestPoint != null)
+            if (bestPoint != null && teleportHandler != null)
             {
                 teleportHandler.PerformTeleport(bestPoint);
-                return;
             }
         }
-        transform.position = Vector3.zero;
+
+        IsInputBlocked = false;
     }
 
     private void TeleportToPosition(Vector3 targetPosition)

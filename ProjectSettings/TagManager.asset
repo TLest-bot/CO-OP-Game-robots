@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Magnetic
+  - Enemy
   layers:
   - Default
   - TransparentFX

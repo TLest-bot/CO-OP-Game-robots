@@ -42,7 +42,7 @@ public class MovePlatform : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         dist = Vector2.Distance(transform.position, vectorPoints[currentPoint]);
         if (t >= 0)

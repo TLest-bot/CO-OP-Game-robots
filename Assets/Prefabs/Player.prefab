@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 2103307562622193382}
   - component: {fileID: -3090482404642094405}
   - component: {fileID: 5240748933000956428}
+  - component: {fileID: -8569642287835862290}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -91,7 +92,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 736286550918306738, guid: 60d06fddea960644ca797ab987288488, type: 3}
+  m_Sprite: {fileID: 2029170487540243258, guid: 5232429b8da9c8b479298575d7886efe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,7 +115,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -162,17 +163,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.04003954, y: 0}
+  m_Offset: {x: 0.0006167162, y: -0.0007300526}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4, y: 0.4}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 0.4, y: 0.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.24873972, y: 0.4}
+  m_Size: {x: 0.11440967, y: 0.16200247}
   m_EdgeRadius: 0
 --- !u!114 &938521383637397875
 MonoBehaviour:
@@ -215,9 +216,13 @@ MonoBehaviour:
   moveSpeed: 4
   jumpForce: 8
   fastFallGravity: 4
+  deaccelrationSpeedX: 0.1
+  deaccelrationSpeedY: 4.5
+  maxYSpeed: 10
   footstepSource: {fileID: 5658938723537863337}
   fadeSpeed: 5
   maxVolume: 0.5
+  animator: {fileID: -8569642287835862290}
 --- !u!114 &-7843804727310489448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,10 +409,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Magnetic
   magneticColliders: []
+  totalDirection: {x: 0, y: 0}
   polarity: 1
   isStatic: 0
-  strength: 5
+  strength: 1
   range: 8
+  distanceStrengthMultiplier: 1.1
+  minMultiplier: 0.5
   rb: {fileID: 7528931066305319513}
 --- !u!114 &-3090482404642094405
 MonoBehaviour:
@@ -421,8 +429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a69178e7a702244adf4d1573c2f9e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerReversePolarity
-  strength: 40
-  duration: 0.2
+  strength: 1.2
+  duration: 0.35
   cooldown: 1.5
   reverse: 1
 --- !u!114 &5240748933000956428
@@ -438,3 +446,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTeleportHandler
   TeleportCooldownDuration: 0.5
+--- !u!95 &-8569642287835862290
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2424541399411554595}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b825bd53e477e2649858873fbc72d87c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

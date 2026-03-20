@@ -163,4 +163,5 @@ MonoBehaviour:
   isStatic: 0
   strength: 5
   range: 8
+  distanceStrengthMultiplier: 1.2
   rb: {fileID: 5682532677294590051}

@@ -111,6 +111,7 @@ MonoBehaviour:
   isStatic: 1
   strength: 2
   range: 8
+  distanceStrengthMultiplier: 1.2
   rb: {fileID: 0}
 --- !u!61 &1905587561075053940
 BoxCollider2D:
@@ -170,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 0
+  GlobalObjectIdHash: 1915225303
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1

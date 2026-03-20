@@ -9,9 +9,13 @@ public class PlayerController : NetworkBehaviour
     public float moveSpeed = 8f;
     public float jumpForce = 12f;
     public float fastFallGravity = 4f;
+    public float deaccelrationSpeedX = 0.1f;
+    public float deaccelrationSpeedY = 0.1f;
+    public float maxYSpeed = 0.1f;
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
+    private Vector2 lastMoveInput;
     private bool isFastFalling;
     private float defaultGravity;
     private PlayerTeleportHandler teleportHandler;
@@ -20,6 +24,9 @@ public class PlayerController : NetworkBehaviour
     public AudioSource footstepSource;
     public float fadeSpeed = 5f;
     public float maxVolume = 0.5f;
+
+    [Header("Animations")]
+    public Animator animator;
 
     void Start()
     {
@@ -32,6 +39,8 @@ public class PlayerController : NetworkBehaviour
             footstepSource.minDistance = 1f;
             footstepSource.maxDistance = 20f;
         }
+
+        lastMoveInput = new Vector2(0, 0);
     }
 
     void Awake()
@@ -63,25 +72,17 @@ public class PlayerController : NetworkBehaviour
         isFastFalling = value.isPressed;
     }
 
-    void Update()
-    {
-        if (!IsOwner) return;
-        HandleContinuousFootsteps();
-        Vector2 moveDirection = new Vector2(moveInput.x, 0);
-
-        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed)
-        {
-            float accelerationForce = 50f;
-            rb.AddForce(moveDirection * accelerationForce);
-        }
-    }
 
 
     void FixedUpdate()
     {
         if (!IsOwner) return;
+        HandleContinuousFootsteps();
+        HandlePlayerAirAnimations();
 
-        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        //rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        CalculateSpeed();
+
 
         if (isFastFalling && rb.linearVelocity.y < 0)
         {
@@ -91,7 +92,59 @@ public class PlayerController : NetworkBehaviour
         {
             rb.gravityScale = defaultGravity;
         }
+        lastMoveInput = moveInput;
     }
+
+    public void CalculateSpeed()
+    {
+        Vector2 movementDirection = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        Vector2 magnetismDirection = GetComponent<Magnetic>().totalDirection;
+        /*if((magnetismDirection.x > 0 && movementDirection.x > 0) || (magnetismDirection.x < 0 && movementDirection.x < 0))
+        {
+            movementDirection = movementDirection / 2;
+        }*/
+        Vector2 totalSpeed = movementDirection + magnetismDirection;
+
+        if (rb.linearVelocity.x < moveSpeed*-1)
+        {
+            totalSpeed = totalSpeed + new Vector2(rb.linearVelocity.x + deaccelrationSpeedX, 0);
+
+        }
+        else if (rb.linearVelocity.x > moveSpeed)
+        {
+            totalSpeed = totalSpeed + new Vector2(rb.linearVelocity.x - deaccelrationSpeedX, 0);
+        }
+
+
+        rb.linearVelocity = totalSpeed;
+        
+    }
+
+    /*  public void CalculateSpeed()
+      {
+          if (lastMoveInput != moveInput)
+          {
+              if (lastMoveInput.x == 0)
+              {
+                  rb.AddForce(moveInput * moveSpeed, ForceMode2D.Impulse);
+              }
+              else
+              {
+                  if (rb.linearVelocity.x > 0.2f || rb.linearVelocity.x < -0.2f)
+                  {
+                      rb.AddForce((lastMoveInput * moveSpeed)*-1, ForceMode2D.Impulse);
+                  }
+              }
+          }
+      } */
+
+    /* public void CalculateSpeed()
+     {
+         if(rb.linearVelocity.x > moveSpeed*-1 && rb.linearVelocity.x < moveSpeed)
+         {
+             rb.AddForce(moveInput * moveSpeed, ForceMode.VelocityChange);
+         }
+     }*/
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -114,6 +167,8 @@ public class PlayerController : NetworkBehaviour
     {
         bool isMoving = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
         bool isGrounded = Mathf.Abs(rb.linearVelocity.y) < 0.01f;
+        animator.SetBool("IsGrounded", isGrounded);
+        animator.SetBool("IsRunning", isMoving);
 
         if (isMoving && isGrounded)
         {
@@ -157,4 +212,10 @@ public class PlayerController : NetworkBehaviour
         if (cc != null) cc.enabled = true;
     }
 
+    private void HandlePlayerAirAnimations()
+    {
+        bool goingUp = rb.linearVelocityY > 0;
+
+        animator.SetBool("GoingUp", goingUp);
+    }
 }

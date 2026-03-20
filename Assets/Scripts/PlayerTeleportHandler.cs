@@ -22,9 +22,19 @@ public class PlayerTeleportHandler : MonoBehaviour
     {
         if (spawnpoint == null) return;
 
-
         CharacterController cc = GetComponent<CharacterController>();
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+
         if (cc != null) cc.enabled = false;
+
+        transform.rotation = Quaternion.identity;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
 
         transform.position = spawnpoint.transform.position;
 

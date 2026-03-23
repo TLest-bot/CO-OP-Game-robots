@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7820863771043956684}
   - component: {fileID: 6035824230239330982}
   - component: {fileID: 2657872334862232057}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DetectionLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 7407702209621597736}
   - component: {fileID: 4758646396137850077}
   - component: {fileID: 6355200997665722066}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: KillZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 8789100012397305024}
   - component: {fileID: 501926437426612040}
   - component: {fileID: 5676225913061122272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BoxEnemy(Boxo)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 7310013774432876962}
   - component: {fileID: 4855640364127326375}
   - component: {fileID: 2506812785517778080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DetectionRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

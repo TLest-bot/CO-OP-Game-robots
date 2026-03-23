@@ -4,17 +4,19 @@ using System.Linq;
 public class PlayerTeleportHandler : MonoBehaviour
 {
     private SpawnPointManager globalManager;
+    private PlayerController pc;
     private float teleportCooldownTimer = 0f;
     public float TeleportCooldownDuration = 0.5f;
 
     void Start()
     {
         globalManager = Object.FindAnyObjectByType<SpawnPointManager>();
+        pc = GetComponent<PlayerController>();
     }
 
     void Update()
     {
-        if (teleportCooldownTimer > 0)
+        if (teleportCooldownTimer > 0 && pc.IsInputBlocked)
             teleportCooldownTimer -= Time.deltaTime;
     }
 
@@ -45,7 +47,7 @@ public class PlayerTeleportHandler : MonoBehaviour
 
     private void TryManualTeleport(int level)
     {
-        if (globalManager == null) return;
+        if (globalManager == null || pc.IsInputBlocked) return;
 
         Spawnpoint spawnpoint = globalManager.GetSpawnpointByLevel(level);
 

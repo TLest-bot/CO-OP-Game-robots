@@ -4,27 +4,24 @@ public class Missile : MonoBehaviour
 {
     [Header("Movement")]
     public float speed = 12f;
-    public float rotationSpeed = 10f; // How fast it snaps to its direction
+    public float rotationSpeed = 10f;
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
     public float explosionRadius = 3.5f;
+    public float explosionForce = 15f;
 
     private Vector3 moveDirection;
     private bool hasExploded = false;
 
     public void Launch(Transform player)
     {
-        // Set initial direction
         moveDirection = (player.position - transform.position).normalized;
     }
 
     void Update()
     {
-        // 1. Move the missile
         transform.position += moveDirection * speed * Time.deltaTime;
-
-        // 2. Rotate the missile to face where it is going
         UpdateRotation();
     }
 
@@ -32,15 +29,8 @@ public class Missile : MonoBehaviour
     {
         if (moveDirection != Vector3.zero)
         {
-            // Calculate the angle from the movement vector
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-
-            /* IMPORTANT: Since your object points UP naturally, 
-               we subtract 90 degrees so the "Top" faces the "Right" (0 degrees).
-            */
             Quaternion targetRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-
-            // Smoothly rotate toward that direction
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
@@ -49,25 +39,74 @@ public class Missile : MonoBehaviour
     {
         if (hasExploded || collision.isTrigger || collision.CompareTag("Enemy")) return;
 
-        Explode();
+        hasExploded = true;
+
+        GetComponent<Collider2D>().enabled = false;
+
+        if (explosionPrefab != null)
+        {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        }
+
+        Explode(transform.position, explosionRadius, explosionForce);
+
+        Destroy(gameObject);
     }
 
-    public void Explode()
+    public void Explode(Vector2 explosionPos, float radius, float force)
     {
-        hasExploded = true;
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(explosionPos, radius);
 
-        // Multiplayer Damage Logic
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-        foreach (var hit in hits)
+        foreach (var hit in hitColliders)
         {
             if (hit.CompareTag("Player"))
             {
-                var pc = hit.GetComponent<PlayerController>();
-                if (pc != null) pc.DieAndRespawn();
+                PlayerController targetPlayer = hit.GetComponent<PlayerController>();
+                if (targetPlayer == null) continue;
+
+                Vector2 playerPos = hit.transform.position;
+                Vector2 direction = (playerPos - explosionPos).normalized;
+                float distance = Vector2.Distance(explosionPos, playerPos);
+                Vector2 rayStart = explosionPos + (direction * 0.1f);
+                int layerMask = LayerMask.GetMask("Walls", "Player");
+                RaycastHit2D rayHit = Physics2D.Raycast(rayStart, direction, radius, layerMask);
+
+                if (rayHit.collider != null && rayHit.collider.gameObject == hit.gameObject)
+                {
+                    float threshold = radius * 0.5f;
+
+                    if (distance <= threshold && !targetPlayer.IsInputBlocked)
+                    {
+                        Debug.Log($"Killing {hit.name}");
+                        targetPlayer.DieAndRespawn();
+                    }
+                    else
+                    {
+                        if (targetPlayer != null)
+                        {
+                            float forcePercent = 1f - ((distance - threshold) / threshold);
+                            float finalForce = force * forcePercent;
+
+                            targetPlayer.ReceiveExplosionForce(direction, finalForce);
+                        }
+                    }
+                }
+                if (hit.CompareTag("Enemy"))
+                {
+                    Vector2 enemyPos = hit.transform.position;
+                    Vector2 dirToEnemy = (enemyPos - explosionPos).normalized;
+                    Vector2 rayStartE = explosionPos + (dirToEnemy * 0.1f);
+
+                    int enemyLayerMask = LayerMask.GetMask("Walls", "Enemy");
+                    RaycastHit2D rayHitEnemy = Physics2D.Raycast(rayStartE, dirToEnemy, radius, enemyLayerMask);
+
+                    if (rayHitEnemy.collider != null && rayHitEnemy.collider.gameObject == hit.gameObject)
+                    {
+                        Debug.Log($"Enemy {hit.name} destroyed by explosion!");
+                        Destroy(hit.gameObject);
+                    }
+                }
             }
         }
-
-        Destroy(gameObject);
     }
 }

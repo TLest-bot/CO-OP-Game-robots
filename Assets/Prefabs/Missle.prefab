@@ -136,11 +136,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Missile
   speed: 10
+  rotationSpeed: 10
   explosionPrefab: {fileID: 8022139819437743087, guid: 4574b9fcd52dfcc4faa74a2b003491db, type: 3}
-  explosionRadius: 3
-  hitLayers:
-    serializedVersion: 2
-    m_Bits: 9
+  explosionRadius: 6
+  explosionForce: 150
 --- !u!61 &219720284701760961
 BoxCollider2D:
   m_ObjectHideFlags: 0

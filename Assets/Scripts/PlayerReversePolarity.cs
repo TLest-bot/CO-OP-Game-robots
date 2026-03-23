@@ -14,6 +14,8 @@ public class PlayerReversePolarity : MonoBehaviour
     private float cooldownTime = 0;
     private int normalPolarisation;
     private float normalStrength;
+
+    public AudioSource MagneticSound;
     void Awake()
     {
         if (gameObject.GetComponent<Magnetic>() != null)
@@ -28,6 +30,7 @@ public class PlayerReversePolarity : MonoBehaviour
     {
         if (reverse && cooldownTime <= 0)
         {
+            MagneticSound.Play();
             t = duration;
             cooldownTime = cooldown;
         }
@@ -53,6 +56,7 @@ public class PlayerReversePolarity : MonoBehaviour
 
     public void UseAbility(int polarity, float strength)
     {
+        
         magnet.polarity = polarity;
         magnet.strength = strength;
     }

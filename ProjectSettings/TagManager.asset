@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Magnetic
   - Enemy
+  - Platform
   layers:
   - Default
   - TransparentFX

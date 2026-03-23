@@ -20,6 +20,126 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestLevel.unity
     guid: dd5e6b6dd6b9592439e1181cf19738e9
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: 24d24f6818c89a94a9e0ccdd403effce
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 320b01d35b5373a4eb18b9c56c7bdaaf, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

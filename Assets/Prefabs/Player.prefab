@@ -215,13 +215,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   ShowTopMostFoldoutHeaderGroup: 1
-  moveSpeed: 4
-  jumpForce: 8
+  moveSpeed: 5.4
+  jumpForce: 10
   fastFallGravity: 4
   deaccelrationSpeedX: 0.1
   deaccelrationSpeedY: 0.1
   maxYSpeed: 10
-  gravityscale: {x: 0, y: -1}
+  gravityscale: {x: 0, y: -0.6}
+  coyoteTime: 0.15
   footstepSource: {fileID: 5658938723537863337}
   fadeSpeed: 5
   maxVolume: 0.5

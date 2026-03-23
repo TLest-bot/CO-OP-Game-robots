@@ -15,6 +15,7 @@ public class PlayerController : NetworkBehaviour
     public float deaccelrationSpeedY = 0.1f;
     public float maxYSpeed = 0.1f;
     public Vector2 gravityscale;
+    public float coyoteTime = 0.2f;
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -22,6 +23,7 @@ public class PlayerController : NetworkBehaviour
     private bool isFastFalling;
     private float defaultGravity;
     private PlayerTeleportHandler teleportHandler;
+    private float coyoteTimeTimer = 0f;
     public bool IsInputBlocked { get; private set; } = false;
 
     [Header("Continuous Footstep Settings")]
@@ -35,6 +37,8 @@ public class PlayerController : NetworkBehaviour
 
     private Vector2 currentSpeed;
     private Vector2 lastSpeed;
+    private bool lastGroundState = true;
+    private bool usedCoyoteJump = false;
 
     [SerializeField] private GameObject deathUI;
 
@@ -59,6 +63,11 @@ public class PlayerController : NetworkBehaviour
         rb = GetComponent<Rigidbody2D>();
         defaultGravity = rb.gravityScale;
 
+        foreach(GameObject platform in GameObject.FindGameObjectsWithTag("Platform"))
+        {
+            platform.GetComponent<Platform>().players.Add(gameObject);
+        }
+
     }
 
     void OnMove(InputValue value)
@@ -71,8 +80,9 @@ public class PlayerController : NetworkBehaviour
     {
         if (!IsOwner || IsInputBlocked) return;
         Jumpsound.Play();
-        if (value.isPressed && Mathf.Abs(rb.linearVelocity.y) < 0.1f)
+        if (value.isPressed && (IsGrounded() || CanCoyoteTime()))
         {
+            usedCoyoteJump = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
     }
@@ -104,7 +114,10 @@ public class PlayerController : NetworkBehaviour
         {
             rb.gravityScale = defaultGravity;
         }
+
+
         lastMoveInput = moveInput;
+
     }
 
     public void CalculateSpeed()
@@ -187,12 +200,16 @@ public class PlayerController : NetworkBehaviour
             }
         }
     }
+    private void Update()
+    {
+        CoyoteJump();
+    }
 
     void HandleContinuousFootsteps()
     {
         bool isMoving = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
-        bool isGrounded = Mathf.Abs(rb.linearVelocity.y) < 0.01f;
-        animator.SetBool("IsGrounded", isGrounded);
+        bool isGrounded = IsGrounded();
+        animator.SetBool("IsGrounded", IsGrounded());
         animator.SetBool("IsRunning", isMoving);
 
         if (isMoving && isGrounded)
@@ -205,6 +222,18 @@ public class PlayerController : NetworkBehaviour
             footstepSource.volume = Mathf.MoveTowards(footstepSource.volume, 0f, fadeSpeed * Time.deltaTime);
             if (footstepSource.volume <= 0f && footstepSource.isPlaying) footstepSource.Stop();
         }
+    }
+
+    public bool IsGrounded()
+    {
+        int mask = LayerMask.GetMask("Walls");
+        bool grounded = Physics2D.Raycast(transform.position, Vector2.down, 0.33f, mask);
+
+        if (grounded)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void DieAndRespawn()
@@ -292,5 +321,31 @@ public class PlayerController : NetworkBehaviour
         rb.AddForce(explosionImpulse, ForceMode2D.Impulse);
 
         lastSpeed = rb.linearVelocity;
+    }
+
+    public bool CanCoyoteTime()
+    {
+        if(coyoteTimeTimer > 0 && usedCoyoteJump == false)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void CoyoteJump()
+    {
+        if (coyoteTimeTimer > 0) { coyoteTimeTimer -= Time.deltaTime; }
+        if ((IsGrounded() == false && lastGroundState))
+        {
+            coyoteTimeTimer = coyoteTime;
+        }
+        else if (IsGrounded() && lastGroundState == false)
+        {
+            usedCoyoteJump = false;
+        }
+        lastGroundState = IsGrounded();
     }
 }

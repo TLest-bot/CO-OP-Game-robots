@@ -13,7 +13,17 @@ public class Missile : MonoBehaviour
 
     private Vector3 moveDirection;
     private bool hasExploded = false;
+    public AudioSource audioSource;
 
+    public void Start()
+    {
+        audioSource.loop = true;
+        audioSource.playOnAwake = true;
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+    }
     public void Launch(Transform player)
     {
         moveDirection = (player.position - transform.position).normalized;

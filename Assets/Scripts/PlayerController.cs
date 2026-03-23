@@ -28,6 +28,7 @@ public class PlayerController : NetworkBehaviour
     public AudioSource footstepSource;
     public float fadeSpeed = 5f;
     public float maxVolume = 0.5f;
+    public AudioSource Jumpsound;
 
     [Header("Animations")]
     public Animator animator;
@@ -69,6 +70,7 @@ public class PlayerController : NetworkBehaviour
     void OnJump(InputValue value)
     {
         if (!IsOwner || IsInputBlocked) return;
+        Jumpsound.Play();
         if (value.isPressed && Mathf.Abs(rb.linearVelocity.y) < 0.1f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -135,7 +137,7 @@ public class PlayerController : NetworkBehaviour
     
     public bool IsDeaccelerating(Vector2 speed)
     {
-        Debug.Log((Mathf.Abs(lastSpeed.x) > Mathf.Abs(speed.x)) + " + " + (Mathf.Abs(lastSpeed.x) > Mathf.Abs(moveSpeed)));
+        //Debug.Log((Mathf.Abs(lastSpeed.x) > Mathf.Abs(speed.x)) + " + " + (Mathf.Abs(lastSpeed.x) > Mathf.Abs(moveSpeed)));
         if (Mathf.Abs(lastSpeed.x) > Mathf.Abs(speed.x) && Mathf.Abs(lastSpeed.x) > Mathf.Abs(moveSpeed))
         {
             if((lastSpeed.x > 0 && speed.x > 0) || (lastSpeed.x < 0 && speed.x < 0))
@@ -280,5 +282,15 @@ public class PlayerController : NetworkBehaviour
         bool goingUp = rb.linearVelocityY > 0;
 
         animator.SetBool("GoingUp", goingUp);
+    }
+    public void ReceiveExplosionForce(Vector2 direction, float force)
+    {
+        if (IsInputBlocked) return;
+        direction.y += 0.5f;
+        direction = direction.normalized;
+        Vector2 explosionImpulse = direction * force;
+        rb.AddForce(explosionImpulse, ForceMode2D.Impulse);
+
+        lastSpeed = rb.linearVelocity;
     }
 }

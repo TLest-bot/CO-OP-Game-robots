@@ -12,12 +12,16 @@ public class PlayerTeleportHandler : MonoBehaviour
     {
         globalManager = Object.FindAnyObjectByType<SpawnPointManager>();
         pc = GetComponent<PlayerController>();
+        Debug.Log("Started Teleporthandler");
     }
 
     void Update()
     {
-        if (teleportCooldownTimer > 0 && pc.IsInputBlocked)
+        Debug.Log(teleportCooldownTimer);
+        if (teleportCooldownTimer > 0)
+        {
             teleportCooldownTimer -= Time.deltaTime;
+        }
     }
 
     public void PerformTeleport(Spawnpoint spawnpoint)

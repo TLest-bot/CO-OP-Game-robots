@@ -23,6 +23,8 @@ public class PlayerController : NetworkBehaviour
     private float defaultGravity;
     private PlayerTeleportHandler teleportHandler;
     public bool IsInputBlocked { get; private set; } = false;
+    private SpriteRenderer playerSprite;
+    public GameObject tinyExplosionPrefab;
 
     [Header("Continuous Footstep Settings")]
     public AudioSource footstepSource;
@@ -42,6 +44,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (footstepSource == null) footstepSource = GetComponent<AudioSource>();
         teleportHandler = GetComponent<PlayerTeleportHandler>();
+        playerSprite = GetComponentInChildren<SpriteRenderer>();
 
         if (Camera.main != null)
         {
@@ -219,8 +222,6 @@ public class PlayerController : NetworkBehaviour
         IsInputBlocked = true;
         GameObject spawnedUI = null;
 
-        // 1. Find and Load the prefab from the 'Resources' folder
-        // The name "DeathUI" must match your prefab's filename exactly
         GameObject deathUIPrefab = Resources.Load<GameObject>("DeathUI");
 
         if (deathUIPrefab != null)
@@ -232,7 +233,6 @@ public class PlayerController : NetworkBehaviour
             Debug.LogError("Could not find 'DeathUI' prefab in the Resources folder!");
         }
 
-        // 2. Kill momentum
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -240,16 +240,15 @@ public class PlayerController : NetworkBehaviour
             rb.angularVelocity = 0f;
         }
 
-        // 3. The 2-second wait
+        SetPlayerVisibility(false);
+        Instantiate(tinyExplosionPrefab, transform.position, transform.rotation);
         yield return new WaitForSeconds(2f);
 
-        // 4. Remove the UI
         if (spawnedUI != null)
         {
             Destroy(spawnedUI);
         }
 
-        // 5. Teleport Logic
         SpawnPointManager spawnManager = UnityEngine.Object.FindAnyObjectByType<SpawnPointManager>();
         if (spawnManager != null)
         {
@@ -263,8 +262,17 @@ public class PlayerController : NetworkBehaviour
                 teleportHandler.PerformTeleport(bestPoint);
             }
         }
+        SetPlayerVisibility(true);
 
         IsInputBlocked = false;
+    }
+
+    public void SetPlayerVisibility(bool isVisible)
+    {
+        if (playerSprite != null)
+        {
+            playerSprite.enabled = isVisible;
+        }
     }
 
     private void TeleportToPosition(Vector3 targetPosition)

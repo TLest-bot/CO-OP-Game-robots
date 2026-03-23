@@ -141,7 +141,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1706b5667259c8b4386c63ddbb8f5d5b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -222,7 +222,8 @@ MonoBehaviour:
   deaccelrationSpeedY: 0.1
   maxYSpeed: 10
   gravityscale: {x: 0, y: -0.6}
-  coyoteTime: 0.15
+  coyoteTime: 0.16
+  tinyExplosionPrefab: {fileID: 461556662882864396, guid: 535f45139ff0f6b4e991bc2d3a15b1b3, type: 3}
   footstepSource: {fileID: 5658938723537863337}
   fadeSpeed: 5
   maxVolume: 0.5

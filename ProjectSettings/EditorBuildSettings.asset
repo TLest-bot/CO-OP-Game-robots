@@ -140,6 +140,42 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level.unity
     guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: a781173540ad6e24ab1c37932b45e06c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 320b01d35b5373a4eb18b9c56c7bdaaf, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

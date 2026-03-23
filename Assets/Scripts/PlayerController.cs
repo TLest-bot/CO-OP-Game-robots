@@ -41,6 +41,8 @@ public class PlayerController : NetworkBehaviour
     private Vector2 lastSpeed;
     private bool lastGroundState = true;
     private bool usedCoyoteJump = false;
+    private SpriteRenderer spriteRenderer;
+    private bool isFacingLeft = true;
 
     [SerializeField] private GameObject deathUI;
 
@@ -59,6 +61,8 @@ public class PlayerController : NetworkBehaviour
 
         lastMoveInput = new Vector2(0, 0);
         lastSpeed = currentSpeed;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Awake()
@@ -77,6 +81,19 @@ public class PlayerController : NetworkBehaviour
     {
         if (!IsOwner || IsInputBlocked) return;
         moveInput = value.Get<Vector2>();
+
+        if(moveInput.x == -1) { isFacingLeft = true; }
+        if(moveInput.x == 1) { isFacingLeft = false; }
+
+        spriteRenderer.flipX = isFacingLeft;
+
+        Vector2 targetAngle = Vector2.up;
+        Vector2 currentAngle = transform.eulerAngles;
+        currentAngle = new Vector2(
+            Mathf.LerpAngle(currentAngle.x, targetAngle.x, Time.deltaTime),
+            Mathf.LerpAngle(currentAngle.y, targetAngle.y, Time.deltaTime)
+        );
+        transform.eulerAngles = currentAngle;
     }
 
     void OnJump(InputValue value)

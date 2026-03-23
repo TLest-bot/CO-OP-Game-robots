@@ -42,6 +42,7 @@ public class PlayerController : NetworkBehaviour
     private bool lastGroundState = true;
     private bool usedCoyoteJump = false;
     private SpriteRenderer spriteRenderer;
+    private BoxCollider2D myCollider;
     private bool isFacingLeft = true;
 
     [SerializeField] private GameObject deathUI;
@@ -51,6 +52,7 @@ public class PlayerController : NetworkBehaviour
         if (footstepSource == null) footstepSource = GetComponent<AudioSource>();
         teleportHandler = GetComponent<PlayerTeleportHandler>();
         playerSprite = GetComponentInChildren<SpriteRenderer>();
+        myCollider = GetComponentInChildren<BoxCollider2D>();
 
         if (Camera.main != null)
         {
@@ -258,9 +260,12 @@ public class PlayerController : NetworkBehaviour
 
     public void DieAndRespawn()
     {
-        rb.linearVelocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-        StartCoroutine(DeathSequenceRoutine());
+        if(!IsInputBlocked)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            StartCoroutine(DeathSequenceRoutine());
+        }
     }
 
     private IEnumerator DeathSequenceRoutine()
@@ -318,6 +323,7 @@ public class PlayerController : NetworkBehaviour
         if (playerSprite != null)
         {
             playerSprite.enabled = isVisible;
+            myCollider.enabled = isVisible;
         }
     }
 

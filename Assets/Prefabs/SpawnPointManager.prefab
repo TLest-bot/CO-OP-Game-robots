@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4653770299216481821}
   - component: {fileID: 5148543217869115498}
-  - component: {fileID: 2825908218677033296}
+  - component: {fileID: -9010741376029241115}
   m_Layer: 0
   m_Name: SpawnPointManager
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   Spawnpoints:
   - {fileID: 2175169069380412681}
   - {fileID: 7589926270716075865}
---- !u!114 &2825908218677033296
+--- !u!114 &-9010741376029241115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,27 +59,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 147865795683010285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: cfe61ef3debe35d498fba8e46be62909, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTeleportHandler
+  TeleportCooldownDuration: 0.5
 --- !u!1 &3121441084398519712
 GameObject:
   m_ObjectHideFlags: 0

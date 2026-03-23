@@ -22,7 +22,7 @@ public class MissileLauncher : MonoBehaviour
     void Shoot()
     {
         GameObject go = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
-
+        go.transform.localScale = transform.lossyScale;
         Collider2D launcherCollider = GetComponent<Collider2D>();
         Collider2D missileCollider = go.GetComponent<Collider2D>();
 

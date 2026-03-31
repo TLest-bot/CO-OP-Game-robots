@@ -22,6 +22,7 @@ public class SequenceManager : MonoBehaviour
     [Header("Succes/Fail")]
     public AudioSource VictorySound;
     public AudioSource Failsound;
+    public GameObject SuccesActivity;
 
     void Start()
     {
@@ -134,6 +135,7 @@ public class SequenceManager : MonoBehaviour
     void HandleSuccess()
     {
         VictorySound.Play();
+        SuccesActivity.SetActive(true);
         GenerateNewSequence();
     }
 

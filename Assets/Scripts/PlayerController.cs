@@ -4,8 +4,9 @@ using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : NetworkBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 8f;
@@ -16,6 +17,7 @@ public class PlayerController : NetworkBehaviour
     public float maxYSpeed = 0.1f;
     public Vector2 gravityscale;
     public float coyoteTime = 0.2f;
+    public float rotateSpeed = 1f;
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -43,7 +45,9 @@ public class PlayerController : NetworkBehaviour
     private bool usedCoyoteJump = false;
     private SpriteRenderer spriteRenderer;
     private bool isFacingLeft = true;
-
+    private Quaternion originalRotation;
+    private bool IsOwner = true;
+    public bool isPlayer1;
     [SerializeField] private GameObject deathUI;
 
     void Start()
@@ -63,39 +67,56 @@ public class PlayerController : NetworkBehaviour
         lastSpeed = currentSpeed;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+        originalRotation = transform.rotation;
 
-    void Awake()
-    {
+        if(GetComponent<PlayerReversePolarity>() == null)
+        {
+            CameraFollow.Instance.SetTarget2(this.transform);
+            isPlayer1 = false;
+        }
+        else
+        {
+            CameraFollow.Instance.SetTarget(this.transform);
+            isPlayer1 = true;
+        }
+        animator.SetBool("Player1", isPlayer1);
+        if(GetComponent<PlayerReversePolarity>() != null)
+        {
+            GetComponent<PlayerReversePolarity>().isPlayer1 = isPlayer1;
+        }
+
+
         rb = GetComponent<Rigidbody2D>();
         defaultGravity = rb.gravityScale;
 
-        foreach(GameObject platform in GameObject.FindGameObjectsWithTag("Platform"))
+        foreach (GameObject platform in GameObject.FindGameObjectsWithTag("Platform"))
         {
             platform.GetComponent<Platform>().players.Add(gameObject);
         }
 
+        Scene currentScene = SceneManager.GetActiveScene();
+        Activate(currentScene.name != "Level 0");
     }
+
 
     void OnMove(InputValue value)
     {
         if (!IsOwner || IsInputBlocked) return;
         moveInput = value.Get<Vector2>();
+        if(moveInput.x > 0.5) { moveInput.x = 1;  }
+        else if (moveInput.x < -0.5) { moveInput.x = -1; }
+        else { moveInput.x = 0; }
+
+        if (moveInput.y > 0.5) { moveInput.y = 1; }
+        else if (moveInput.y < -0.5) { moveInput.y = -1; }
+        else { moveInput.y = 0; }
 
         if(moveInput.x == -1) { isFacingLeft = true; }
         if(moveInput.x == 1) { isFacingLeft = false; }
 
         spriteRenderer.flipX = isFacingLeft;
-
-        Vector2 targetAngle = Vector2.up;
-        Vector2 currentAngle = transform.eulerAngles;
-        currentAngle = new Vector2(
-            Mathf.LerpAngle(currentAngle.x, targetAngle.x, Time.deltaTime),
-            Mathf.LerpAngle(currentAngle.y, targetAngle.y, Time.deltaTime)
-        );
-        transform.eulerAngles = currentAngle;
     }
-
+    
     void OnJump(InputValue value)
     {
         if (!IsOwner || IsInputBlocked) return;
@@ -203,7 +224,7 @@ public class PlayerController : NetworkBehaviour
              rb.AddForce(moveInput * moveSpeed, ForceMode.VelocityChange);
          }
      }*/
-    public override void OnNetworkSpawn()
+    /*public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
 
@@ -219,10 +240,14 @@ public class PlayerController : NetworkBehaviour
                 Debug.LogError("CameraFollow instance not found in the scene!");
             }
         }
-    }
+    }*/
     private void Update()
     {
         CoyoteJump();
+        if(IsGrounded() && moveInput.x != 0)
+        {
+            RotatePlayerBackUp();
+        }
     }
 
     void HandleContinuousFootsteps()
@@ -249,7 +274,11 @@ public class PlayerController : NetworkBehaviour
         int mask = LayerMask.GetMask("Walls");
         bool grounded = Physics2D.Raycast(transform.position, Vector2.down, 0.33f, mask);
 
-        if (grounded)
+        int playerMask = LayerMask.GetMask("Player");
+        Vector2 playerpos = transform.position;
+        bool onPlayer = Physics2D.Raycast(playerpos - new Vector2(0,0.30f), Vector2.down, 0.01f, playerMask);
+
+        if (grounded || onPlayer)
         {
             return true;
         }
@@ -372,5 +401,18 @@ public class PlayerController : NetworkBehaviour
             usedCoyoteJump = false;
         }
         lastGroundState = IsGrounded();
+    }
+
+    public void RotatePlayerBackUp()
+    {
+        Quaternion targetAngle = originalRotation;
+        Quaternion currentAngle = transform.rotation;
+        transform.rotation = Quaternion.Lerp(currentAngle, targetAngle, rotateSpeed);
+    }
+
+    public void Activate(bool active)
+    {
+        animator.SetBool("IsActivated", active);
+        GetComponent<Magnetic>().activated = active;
     }
 }

@@ -1,0 +1,832 @@
+fileFormatVersion: 2
+guid: 4ffb74754b477134fb05644d2e4dc590
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1169716832979378282
+    second: NegativeBot-Sheet-Sheet-Sheet_0
+  - first:
+      213: 6231783797143996632
+    second: NegativeBot-Sheet-Sheet-Sheet_1
+  - first:
+      213: -1830116609011878056
+    second: NegativeBot-Sheet-Sheet-Sheet_2
+  - first:
+      213: -6384513141302406955
+    second: NegativeBot-Sheet-Sheet-Sheet_3
+  - first:
+      213: -7177866820106628479
+    second: NegativeBot-Sheet-Sheet-Sheet_4
+  - first:
+      213: 8141339772089467549
+    second: NegativeBot-Sheet-Sheet-Sheet_5
+  - first:
+      213: -1484138528579389913
+    second: NegativeBot-Sheet-Sheet-Sheet_6
+  - first:
+      213: -8369331546334950102
+    second: NegativeBot-Sheet-Sheet-Sheet_7
+  - first:
+      213: 6988893398586083461
+    second: NegativeBot-Sheet-Sheet-Sheet_8
+  - first:
+      213: -4612594446355244078
+    second: NegativeBot-Sheet-Sheet-Sheet_9
+  - first:
+      213: 3228689612490018212
+    second: NegativeBot-Sheet-Sheet-Sheet_10
+  - first:
+      213: -3306744490049940976
+    second: NegativeBot-Sheet-Sheet-Sheet_11
+  - first:
+      213: -4485017613246293669
+    second: NegativeBot-Sheet-Sheet-Sheet_12
+  - first:
+      213: -2288368716027926646
+    second: NegativeBot-Sheet-Sheet-Sheet_13
+  - first:
+      213: 7235042866193272209
+    second: NegativeBot-Sheet-Sheet-Sheet_14
+  - first:
+      213: -426668116633525748
+    second: NegativeBot-Sheet-Sheet-Sheet_15
+  - first:
+      213: -5882983609630987518
+    second: NegativeBot-Sheet-Sheet-Sheet_16
+  - first:
+      213: 2940085835629653226
+    second: NegativeBot-Sheet-Sheet-Sheet_17
+  - first:
+      213: 813782545830087953
+    second: NegativeBot-Sheet-Sheet-Sheet_18
+  - first:
+      213: -1789381143307674412
+    second: NegativeBot-Sheet-Sheet-Sheet_19
+  - first:
+      213: 73222543474640365
+    second: NegativeBot-Sheet-Sheet-Sheet_20
+  - first:
+      213: -2147713692076428474
+    second: NegativeBot-Sheet-Sheet-Sheet_21
+  - first:
+      213: 1467708345318218000
+    second: NegativeBot-Sheet-Sheet-Sheet_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69f1872ecb454cfe0800000000000000
+      internalID: -1169716832979378282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d88dc9985ebb7650800000000000000
+      internalID: 6231783797143996632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 857fd46f3ae1a96e0800000000000000
+      internalID: -1830116609011878056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d05bd4ef17a567a0800000000000000
+      internalID: -6384513141302406955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1825b763828136c90800000000000000
+      internalID: -7177866820106628479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9207275369dbf070800000000000000
+      internalID: 8141339772089467549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 726fd8e1fd7476be0800000000000000
+      internalID: -1484138528579389913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2d0c3d1d492adb80800000000000000
+      internalID: -8369331546334950102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 588cbcb64898df060800000000000000
+      internalID: 6988893398586083461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2db5e042ac5ccffb0800000000000000
+      internalID: -4612594446355244078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ad0672a81c9ecc20800000000000000
+      internalID: 3228689612490018212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 012d79bf7651c12d0800000000000000
+      internalID: -3306744490049940976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b59951f4e3402c1c0800000000000000
+      internalID: -4485017613246293669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a87e90ee6c41e30e0800000000000000
+      internalID: -2288368716027926646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d8c266729086460800000000000000
+      internalID: 7235042866193272209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02e217cb9b241af0800000000000000
+      internalID: -426668116633525748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20bef7093917b5ea0800000000000000
+      internalID: -5882983609630987518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aececd18d784dc820800000000000000
+      internalID: 2940085835629653226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11d8d90f9e22b4b00800000000000000
+      internalID: 813782545830087953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dc1d59a457da27e0800000000000000
+      internalID: -1789381143307674412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de54b5de383240100800000000000000
+      internalID: 73222543474640365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 643ba80b6c9c132e0800000000000000
+      internalID: -2147713692076428474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 019919cb6f85e5410800000000000000
+      internalID: 1467708345318218000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fda0cc375705ef43a92060b7ea836f4
+      internalID: -2077065202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a72edad7df40542aa8456d06cfe734
+      internalID: -1231167578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65915472b3839c54a82117c0afbe9986
+      internalID: 332320085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfb22c26780e91e4bb5f0939aec1e062
+      internalID: -818652493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NegativeBot-Sheet-Sheet-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2084f11b41151d2409f1364525952676
+      internalID: -1355387972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: fb7e3af2301952c47ab036844d8a8d2d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      NegativeBot-Sheet-Sheet-Sheet_0: -1169716832979378282
+      NegativeBot-Sheet-Sheet-Sheet_1: 6231783797143996632
+      NegativeBot-Sheet-Sheet-Sheet_10: 3228689612490018212
+      NegativeBot-Sheet-Sheet-Sheet_11: -3306744490049940976
+      NegativeBot-Sheet-Sheet-Sheet_12: -4485017613246293669
+      NegativeBot-Sheet-Sheet-Sheet_13: -2288368716027926646
+      NegativeBot-Sheet-Sheet-Sheet_14: 7235042866193272209
+      NegativeBot-Sheet-Sheet-Sheet_15: -426668116633525748
+      NegativeBot-Sheet-Sheet-Sheet_16: -5882983609630987518
+      NegativeBot-Sheet-Sheet-Sheet_17: 2940085835629653226
+      NegativeBot-Sheet-Sheet-Sheet_18: 813782545830087953
+      NegativeBot-Sheet-Sheet-Sheet_19: -1789381143307674412
+      NegativeBot-Sheet-Sheet-Sheet_2: -1830116609011878056
+      NegativeBot-Sheet-Sheet-Sheet_20: 73222543474640365
+      NegativeBot-Sheet-Sheet-Sheet_21: -2147713692076428474
+      NegativeBot-Sheet-Sheet-Sheet_22: 1467708345318218000
+      NegativeBot-Sheet-Sheet-Sheet_23: -2077065202
+      NegativeBot-Sheet-Sheet-Sheet_24: -1231167578
+      NegativeBot-Sheet-Sheet-Sheet_25: 332320085
+      NegativeBot-Sheet-Sheet-Sheet_26: -818652493
+      NegativeBot-Sheet-Sheet-Sheet_27: -1355387972
+      NegativeBot-Sheet-Sheet-Sheet_3: -6384513141302406955
+      NegativeBot-Sheet-Sheet-Sheet_4: -7177866820106628479
+      NegativeBot-Sheet-Sheet-Sheet_5: 8141339772089467549
+      NegativeBot-Sheet-Sheet-Sheet_6: -1484138528579389913
+      NegativeBot-Sheet-Sheet-Sheet_7: -8369331546334950102
+      NegativeBot-Sheet-Sheet-Sheet_8: 6988893398586083461
+      NegativeBot-Sheet-Sheet-Sheet_9: -4612594446355244078
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

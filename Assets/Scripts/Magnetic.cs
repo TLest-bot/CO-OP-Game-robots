@@ -10,20 +10,33 @@ public class Magnetic : MonoBehaviour
     public int polarity; //1 is postive polarity, -1 is negative polarity
     public bool isStatic;
     public float strength;
+    private float strength_;
     public float range;
     public float distanceStrengthMultiplier = 2;
     public float minMultiplier = 1f;
+    public float xMult = 2;
+    public bool activated = false;
 
     public Rigidbody2D rb;
 
 
     void Awake()
     {
+        strength_ = strength;
+        strength = 0;
         GameObject.Find("Magnets Manager").GetComponent<MagnetsManager>().UpdateMagnetColliderList();
     }
 
     void FixedUpdate()
     {
+        if (activated)
+        {
+            strength = strength_;
+        }
+        else
+        {
+            strength = 0;
+        }
         totalDirection = new Vector2();
         foreach(BoxCollider2D col in magneticColliders)
         {
@@ -64,6 +77,7 @@ public class Magnetic : MonoBehaviour
         Vector2 dir = ((myPos - GetClosestMagneticPoint(col)).normalized*-1);
         float totalStrength = (magnet.strength*magnet.polarity) * (strength*polarity*-1) * CalculateDistStrenghtMultiplier(dist);
         dir *= totalStrength;
+        dir.x *= xMult;
         //rb.AddForce(dir);
         totalDirection += dir;
     }

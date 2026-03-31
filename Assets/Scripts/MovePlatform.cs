@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class MovePlatform : MonoBehaviour
 {
     [field: Header("Platform moving behaviour")]

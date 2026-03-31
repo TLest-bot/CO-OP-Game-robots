@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class PlayerReversePolarity : MonoBehaviour
+public class PlayerTurnOffMagnetism : MonoBehaviour
 {
     [field: Header("Ability Attributes")]
     [field: SerializeField]
-    public float strength;
     public float duration;
     public float cooldown;
-    public bool reverse;
 
     private Magnetic magnet;
     private float t = 0;
@@ -17,7 +15,6 @@ public class PlayerReversePolarity : MonoBehaviour
 
     public AudioSource MagneticSound;
     public bool isPlayer1;
-
     private bool a = false;
     void Awake()
     {
@@ -26,14 +23,13 @@ public class PlayerReversePolarity : MonoBehaviour
 
     void OnPolarityAbility()
     {
-        if (reverse && cooldownTime <= 0 && GetComponent<Magnetic>().activated)
+        if (cooldownTime <= 0 && GetComponent<Magnetic>().activated)
         {
             MagneticSound.Play();
             t = duration;
             cooldownTime = cooldown;
         }
     }
-
     private void LateUpdate()
     {
         if(a == false)
@@ -56,11 +52,11 @@ public class PlayerReversePolarity : MonoBehaviour
             if (t >= 0)
             {
                 t -= Time.deltaTime;
-                UseAbility(normalPolarisation * -1, strength, !isPlayer1);
+                UseAbility(false);
             }
             else
             {
-                UseAbility(normalPolarisation, normalStrength, isPlayer1);
+                UseAbility(true);
             }
 
             if (cooldownTime >= 0)
@@ -68,13 +64,11 @@ public class PlayerReversePolarity : MonoBehaviour
                 cooldownTime -= Time.deltaTime;
             }
         }
-
     }
 
-    public void UseAbility(int polarity, float strength, bool color)
+    public void UseAbility(bool active)
     {
-        GetComponent<PlayerController>().animator.SetBool("Player1", color);
-        magnet.polarity = polarity;
-        magnet.strength = strength;
+        GetComponent<PlayerController>().animator.SetBool("IsActivated", active);
+        magnet.activated = active;
     }
 }
